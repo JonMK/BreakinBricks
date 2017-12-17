@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 	private GameObject _paddle;
 	private GameObject _ball;
 
-	void Awake () 
+	private void Awake () 
 	{
 		if (Instance == null)
 			Instance = this;
@@ -35,23 +35,43 @@ public class GameManager : MonoBehaviour
 		Setup();
 	}
 
-	public void Setup()
+	private void Setup()
 	{
-//		clonePaddle = Instantiate(paddle, transform.position, Quaternion.identity) as GameObject;
-//		Instantiate(bricksPrefab, transform.position, Quaternion.identity);
+		InitGameObjects ();
+
+		// TODO : Init brick manager
 	}
 
-	void CheckGameOver()
+	private void InitGameObjects()
 	{
-		if (lives < 1) 
-		{
+		_paddle = Instantiate(paddlePrefab, paddlePrefab.transform.position, Quaternion.identity) as GameObject;
+		_ball = Instantiate(ballPrefab, ballPrefab.transform.position, Quaternion.identity) as GameObject;
+	}
+
+	private	void CheckGameOver()
+	{
+		if (lives < 1) {
 			Debug.Log ("LOSE");
 //			gameOver.SetActive(true);
 //			Time.timeScale = .25f;
 			//			Invoke ("FullReset", resetDelay);
-		} 
-		else
-			Invoke ("Reset", resetDelay);
+		} else
+			Reset ();
+	}
+
+	private void FullReset()
+	{
+		// TODO
+	}
+
+	private void Reset()
+	{
+		TouchRelease ();
+
+		Destroy (_paddle);
+		Destroy (_ball);
+
+		InitGameObjects ();
 	}
 
 	public void LoseLife()
@@ -63,17 +83,7 @@ public class GameManager : MonoBehaviour
 		//		Instantiate(deathParticles, clonePaddle.transform.position, Quaternion.identity);
 		//		Destroy(clonePaddle);
 		//		Invoke ("SetupPaddle", resetDelay);
-				CheckGameOver();
-	}
-
-	void FullReset()
-	{
-		// TODO
-	}
-
-	void Reset()
-	{
-
+		CheckGameOver();
 	}
 
 	public void LeftTouch()

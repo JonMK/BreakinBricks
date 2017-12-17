@@ -13,10 +13,9 @@ public class GameManager : MonoBehaviour
 
 	public int lives = 3;
 	public float resetDelay = 1f;
-	public Text livesText;
 
-	public GameObject gameOver;
-	public GameObject youWon;
+	public Text livesText;
+	public Text gameOver;
 
 	public GameObject ballPrefab;
 	public GameObject paddlePrefab;
@@ -26,6 +25,24 @@ public class GameManager : MonoBehaviour
 	private GameObject _paddle;
 	private GameObject _ball;
 
+	private bool _isGameOver;
+
+	private int _currentLives;
+	private int CurrentLives
+	{
+		get { return _currentLives; }
+		set
+		{
+			if (value < 0)
+				value = 0;
+						
+			_currentLives = value;
+
+			livesText.text = "Lives : " + _currentLives;
+
+			Debug.Log ("Lives = " + CurrentLives);
+		}
+	}
 
 	private void Awake () 
 	{
@@ -39,7 +56,10 @@ public class GameManager : MonoBehaviour
 
 	private void Setup()
 	{
+		_isGameOver = false;
+		CurrentLives = lives;
 		InitGameObjects ();
+		gameOver.gameObject.SetActive (false);
 	}
 
 	private void InitGameObjects()
@@ -50,21 +70,29 @@ public class GameManager : MonoBehaviour
 
 	private	void CheckGameOver()
 	{
-		if (lives < 1) {
+		if (CurrentLives < 1) 
+		{
 			Debug.Log ("LOSE");
-//			gameOver.SetActive(true);
-//			Time.timeScale = .25f;
-			FullReset();
-		} else
+
+			TouchRelease ();
+			Destroy (_paddle);
+			Destroy (_ball);
+
+			gameOver.text = "Game Over";
+			gameOver.gameObject.SetActive (true);
+
+			_isGameOver = true;		
+		} 
+		else
 			Reset ();
 	}
 
 	private void FullReset()
 	{
-		// TODO
-
 		if(OnFullReset != null)
 			OnFullReset ();
+
+		Setup ();
 	}
 
 	private void Reset()
@@ -79,24 +107,31 @@ public class GameManager : MonoBehaviour
 
 	public void LoseLife()
 	{
-		lives--;
-		Debug.Log ("Lives = " + lives);
+		CurrentLives--;
 
-		//		livesText.text = "Lives: " + lives;
-		//		Instantiate(deathParticles, clonePaddle.transform.position, Quaternion.identity);
-		//		Destroy(clonePaddle);
-		//		Invoke ("SetupPaddle", resetDelay);
 		CheckGameOver();
 	}
 
 	public void LeftTouch()
 	{
+		if (_isGameOver) 
+		{
+			FullReset ();
+			return;
+		}
+
 		if(OnLeftTouch != null)
 			OnLeftTouch ();
 	}
 
 	public void RightTouch()
 	{
+		if (_isGameOver) 
+		{
+			FullReset ();
+			return;
+		}
+
 		if(OnRightTouch != null)
 			OnRightTouch ();
 	}

@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Brick.cs" />
+     <Compile Include="Assets\Scripts\BrickManager.cs" />
      <Compile Include="Assets\Scripts\DeadZone.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />

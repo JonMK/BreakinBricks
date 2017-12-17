@@ -6,7 +6,8 @@ public class Paddle : MonoBehaviour
 {
 	public float paddleSpeed = 1f;
 
-	public float movementRange = 8.5f;
+	public float leftRange = 1.6f;
+	public float rightRange = 18.9f;
 
 	private float _yPos;
 	private float _direction;
@@ -45,7 +46,7 @@ public class Paddle : MonoBehaviour
 	void FixedUpdate()
 	{
 		float xPos = transform.position.x + (_direction * paddleSpeed);
-		var playerPos = new Vector3 (Mathf.Clamp (xPos, -movementRange, movementRange), _yPos, 0f);
+		var playerPos = new Vector3 (Mathf.Clamp (xPos, leftRange, rightRange), _yPos, 0f);
 		transform.position = playerPos;
 	}
 }

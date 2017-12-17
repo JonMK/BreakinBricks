@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	public static event GameEvent OnLeftTouch;
 	public static event GameEvent OnRightTouch;
 	public static event GameEvent OnTouchRelease;
+	public static event GameEvent OnFullReset;
 
 	public int lives = 3;
 	public float resetDelay = 1f;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 	private GameObject _paddle;
 	private GameObject _ball;
 
+
 	private void Awake () 
 	{
 		if (Instance == null)
@@ -38,8 +40,6 @@ public class GameManager : MonoBehaviour
 	private void Setup()
 	{
 		InitGameObjects ();
-
-		// TODO : Init brick manager
 	}
 
 	private void InitGameObjects()
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 			Debug.Log ("LOSE");
 //			gameOver.SetActive(true);
 //			Time.timeScale = .25f;
-			//			Invoke ("FullReset", resetDelay);
+			FullReset();
 		} else
 			Reset ();
 	}
@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 	private void FullReset()
 	{
 		// TODO
+
+		if(OnFullReset != null)
+			OnFullReset ();
 	}
 
 	private void Reset()

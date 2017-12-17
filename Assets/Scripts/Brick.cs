@@ -12,6 +12,7 @@ public class Brick : MonoBehaviour
 //			coll.gameObject.SendMessage("ApplyDamage", 10);
 
 		//Instantiate(paritcles, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+
+		gameObject.SetActive (false);
 	}
 }

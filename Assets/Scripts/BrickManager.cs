@@ -11,7 +11,7 @@ public class BrickManager : MonoBehaviour
 	public float verticalSpacer = .7f;
 	public float topSpacer = 1f;
 
-	private List<Brick> _brickPool;
+	private List<GameObject> _brickPool;
 
 	void OnDestroy()
 	{
@@ -20,7 +20,7 @@ public class BrickManager : MonoBehaviour
 		
 	public BrickManager()
 	{
-		_brickPool = new List<Brick> ();
+		_brickPool = new List<GameObject> ();
 
 		GameManager.OnFullReset += Reset;
 	}
@@ -32,13 +32,13 @@ public class BrickManager : MonoBehaviour
 
 	private void InitBricks()
 	{
-		var brick =  Instantiate(brickPrefab, transform.position, Quaternion.identity) as GameObject;
-		var spriteWidth = brick.GetComponent<SpriteRenderer> ().bounds.size.x;
-		var spriteHeight = brick.GetComponent<SpriteRenderer> ().bounds.size.y;
+		var brickTemp =  Instantiate(brickPrefab, transform.position, Quaternion.identity) as GameObject;
+		var spriteWidth = brickTemp.GetComponent<SpriteRenderer> ().bounds.size.x;
+		var spriteHeight = brickTemp.GetComponent<SpriteRenderer> ().bounds.size.y;
 		var worldDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10));
 
 		int bricksPerRow = (int)((worldDimensions.x - horizontalSpacer) / (spriteWidth + horizontalSpacer));
-		Destroy (brick);
+		Destroy (brickTemp);
 
 		//Debug.Log (spriteWidth + " : " + worldDimensions + " : " + bricksPerRow);
 
@@ -50,15 +50,18 @@ public class BrickManager : MonoBehaviour
 		int horzBrickMultiplier = 0;
 		int horzMultiplier = 1;
 
+		GameObject brick;
 		for (int x = 0; x < numberOfRows; x++) 
 		{
 			for (int i = 0; i < bricksPerRow; i++) 
 			{			
 			
-				Instantiate (brickPrefab, 
+				brick = Instantiate (brickPrefab, 
 					new Vector2 ((horizontalSpacer * horzMultiplier) + (spriteWidth * horzBrickMultiplier) + (spriteWidth / 2), 
 						(worldDimensions.y - ((verticalSpacer * vertMultiplier) + (spriteHeight * vertBrickMultiplier))) - topSpacer), 
-					Quaternion.identity);
+					Quaternion.identity) as GameObject;
+
+				_brickPool.Add (brick);
 
 				horzBrickMultiplier++;
 				horzMultiplier++;

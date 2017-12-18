@@ -15,11 +15,8 @@ public class Brick : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{		
-		Death();
-	}
+		AudioManager.Instance.PlayBrickDeath ();
 
-	private void Death()
-	{
 		_brickBurstParticles.Play ();
 
 		gameObject.SetActive (false);

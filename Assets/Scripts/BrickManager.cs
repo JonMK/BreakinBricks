@@ -6,6 +6,8 @@ public class BrickManager : MonoBehaviour
 {
 	public GameObject brickPrefab;
 
+	public List<Sprite> brickSprites;
+
 	public float horizontalSpacer = .5f;
 	public float verticalSpacer = .7f;
 	public float topSpacer = 1f;
@@ -56,6 +58,12 @@ public class BrickManager : MonoBehaviour
 						// start at the top of the screen - ((height of all spacers) + (height of all sprites) - leave some space at the top)
 						(worldDimensions.y - ((verticalSpacer * vertMultiplier) + (spriteHeight * vertBrickMultiplier))) - topSpacer), 
 					Quaternion.identity) as GameObject;
+
+				if(brickSprites.Count > 0)
+				{
+					int sprite = Random.Range (0, brickSprites.Count);
+					brick.GetComponent<SpriteRenderer> ().sprite = brickSprites [sprite];
+				}
 
 				_brickPool.Add (brick);
 

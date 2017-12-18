@@ -51,9 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87db1d84695b64789884536506993875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowsOfBricks: 3
   brickPrefab: {fileID: 1646740071285256, guid: a28dd8158c083430e8330e2f6deda8a3,
     type: 2}
+  brickSprites:
+  - {fileID: 21300000, guid: 65c0718ef4c6840b1a36607f0e6e833f, type: 3}
+  - {fileID: 21300000, guid: dc5eae9b71c7c41be908b58640180d77, type: 3}
+  - {fileID: 21300000, guid: 290b750ec2b3642e89463190dc8bf752, type: 3}
   horizontalSpacer: 0.5
   verticalSpacer: 0.7
   topSpacer: 1

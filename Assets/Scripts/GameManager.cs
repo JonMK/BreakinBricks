@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (lives > 0 && _currentNumberOfBricks < 1)
 		{
+			AudioManager.Instance.PlayWin ();
+
 			gameOver.text = "You Win";
 			gameOver.gameObject.SetActive (true);
 
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (CurrentLives < 1) 
 		{
+			AudioManager.Instance.PlayGameOver ();
+
 			StopGame ();
 
 			gameOver.text = "Game Over";

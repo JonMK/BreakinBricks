@@ -32,7 +32,8 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayBrickDeath()
 	{
-		audioSource.PlayOneShot (brickDeath);
+		float vol = Random.Range (_volLowRange, _volHighRange);
+		audioSource.PlayOneShot (brickDeath, vol);
 	}
 
 	public void PlayWin()

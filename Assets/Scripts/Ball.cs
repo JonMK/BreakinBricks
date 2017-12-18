@@ -27,4 +27,9 @@ public class Ball : MonoBehaviour
 			_rb.AddForce (new Vector2 (ballInitialVelocity, ballInitialVelocity));
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D coll) 
+	{	
+		AudioManager.Instance.PlayBallBounce ();
+	}
 }

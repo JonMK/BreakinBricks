@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-	public GameObject paritcles;
+	public GameObject brickDeathParticles;
+	public GameObject ballHitParticles;
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{
-//		if (coll.gameObject.tag == "Enemy")
-//			coll.gameObject.SendMessage("ApplyDamage", 10);
+		if (coll.gameObject.tag == "Ball") 
+		{
+			//Instantiate(brickDeathParticles, transform.position, Quaternion.identity);
+		
+			//Invoke ("Death", .7f);
+			Death();
+		}
+	}
 
-		//Instantiate(paritcles, transform.position, Quaternion.identity);
+	private void Death()
+	{
+		//Instantiate(brickDeathParticles, transform.position, Quaternion.identity);
 
 		gameObject.SetActive (false);
 

@@ -432,7 +432,7 @@ Prefab:
     - target: {fileID: 114338555795362420, guid: 392a9dc19ed89417b92de8caa798a1b8,
         type: 2}
       propertyPath: rowsOfBricks
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114338555795362420, guid: 392a9dc19ed89417b92de8caa798a1b8,
         type: 2}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LeftTouch
   - RightTouch
+  - Ball
   layers:
   - Default
   - TransparentFX

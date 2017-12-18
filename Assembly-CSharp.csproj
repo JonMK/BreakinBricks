@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Brick.cs" />
      <Compile Include="Assets\Scripts\BrickManager.cs" />
      <Compile Include="Assets\Scripts\DeadZone.cs" />
+     <Compile Include="Assets\Scripts\DestroyParticles.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\Paddle.cs" />

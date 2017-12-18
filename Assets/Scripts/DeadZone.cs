@@ -6,6 +6,7 @@ public class DeadZone : MonoBehaviour
 {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		GameManager.Instance.LoseLife ();
+		if (coll.gameObject.tag == "Ball") 
+			GameManager.Instance.LoseLife ();
 	}
 }

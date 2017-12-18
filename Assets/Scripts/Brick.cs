@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-	public GameObject brickDeathParticles;
-	public GameObject ballHitParticles;
+	public ParticleSystem brickBurstParticlesPrefab;
+	public ParticleSystem ballHitParticlesPrefab;
+
+	private ParticleSystem _brickBurstParticles;
+
+	void Awake()
+	{
+		_brickBurstParticles = Instantiate(brickBurstParticlesPrefab, transform.position, Quaternion.identity) as ParticleSystem;
+		//Instantiate(ballHitParticles, transform.position, Quaternion.identity);
+	}
 
 	void OnCollisionEnter2D(Collision2D coll) 
 	{
 		if (coll.gameObject.tag == "Ball") 
 		{
-			//Instantiate(brickDeathParticles, transform.position, Quaternion.identity);
+			//ballHitParticles.Play ();
 		
 			//Invoke ("Death", .7f);
 			Death();
@@ -20,7 +28,7 @@ public class Brick : MonoBehaviour
 
 	private void Death()
 	{
-		//Instantiate(brickDeathParticles, transform.position, Quaternion.identity);
+		_brickBurstParticles.Play ();
 
 		gameObject.SetActive (false);
 

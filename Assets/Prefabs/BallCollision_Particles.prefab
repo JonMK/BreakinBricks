@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4428885679863856}
   - component: {fileID: 198707878496788682}
   - component: {fileID: 199096054113444310}
-  - component: {fileID: 114963605545000642}
   m_Layer: 0
   m_Name: BallCollision_Particles
   m_TagString: Untagged
@@ -42,18 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114963605545000642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1107593486336182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f1d55499c581435bace05bf8bfa2924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTime: 5
 --- !u!198 &198707878496788682
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -65,7 +52,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

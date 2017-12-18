@@ -50,7 +50,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646740071285256}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaac4c8261bb40c99b6a54350eae118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickDeathParticles: {fileID: 1793651807334994, guid: 4d8834f6bfaca47929d3fddc4de39ed8,
+  brickBurstParticlesPrefab: {fileID: 198073301123475366, guid: 4d8834f6bfaca47929d3fddc4de39ed8,
     type: 2}
-  ballHitParticles: {fileID: 1107593486336182, guid: bc5dc1f29fa184b8994833933f5c34fd,
+  ballHitParticlesPrefab: {fileID: 198707878496788682, guid: bc5dc1f29fa184b8994833933f5c34fd,
     type: 2}
 --- !u!212 &212544909897236022
 SpriteRenderer:

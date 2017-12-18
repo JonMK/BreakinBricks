@@ -61,7 +61,7 @@ public class BrickManager : MonoBehaviour
 
 				if(brickSprites.Count > 0)
 				{
-					int sprite = Random.Range (0, brickSprites.Count);
+					var sprite = Random.Range (0, brickSprites.Count);
 					brick.GetComponent<SpriteRenderer> ().sprite = brickSprites [sprite];
 				}
 

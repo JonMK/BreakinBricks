@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
 	public static event GameEvent OnFullReset;
 
 	public int lives = 3;
-	public float resetDelay = 1f;
+	public int rowsOfBricks = 3;
 
 	public Text livesText;
 	public Text gameOver;
 
 	public GameObject ballPrefab;
 	public GameObject paddlePrefab;
+	public BrickManager brickManagerPrefab;
 
 	public static GameManager Instance = null;
 
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
 	private GameObject _ball;
 
 	private bool _isGameOver;
+
+	private int _numberOfBricks;
+	private int _currentNumberOfBricks;
 
 	private int _currentLives;
 	private int CurrentLives
@@ -51,6 +55,9 @@ public class GameManager : MonoBehaviour
 		else if (Instance != this)
 			Destroy (gameObject);
 
+		var brickManager = Instantiate(brickManagerPrefab, transform.position, Quaternion.identity) as BrickManager;
+		_numberOfBricks = brickManager.InitBricks (rowsOfBricks);
+
 		Setup();
 	}
 
@@ -58,6 +65,7 @@ public class GameManager : MonoBehaviour
 	{
 		_isGameOver = false;
 		CurrentLives = lives;
+		_currentNumberOfBricks = _numberOfBricks;
 		InitGameObjects ();
 		gameOver.gameObject.SetActive (false);
 	}
@@ -68,23 +76,34 @@ public class GameManager : MonoBehaviour
 		_ball = Instantiate(ballPrefab, ballPrefab.transform.position, Quaternion.identity) as GameObject;
 	}
 
+	public void CheckWin ()
+	{
+		if (lives > 0 && _currentNumberOfBricks < 1)
+		{
+			gameOver.text = "You Win";
+			gameOver.gameObject.SetActive (true);
+
+			StopGame ();
+
+			_isGameOver = true;	
+		}
+	}
+
 	private	void CheckGameOver()
 	{
 		if (CurrentLives < 1) 
 		{
-			Debug.Log ("LOSE");
-
-			TouchRelease ();
-			Destroy (_paddle);
-			Destroy (_ball);
+			StopGame ();
 
 			gameOver.text = "Game Over";
 			gameOver.gameObject.SetActive (true);
 
 			_isGameOver = true;		
-		} 
-		else
-			Reset ();
+		} else 
+		{
+			StopGame ();
+			InitGameObjects ();
+		}
 	}
 
 	private void FullReset()
@@ -95,14 +114,11 @@ public class GameManager : MonoBehaviour
 		Setup ();
 	}
 
-	private void Reset()
+	private void StopGame()
 	{
 		TouchRelease ();
-
 		Destroy (_paddle);
 		Destroy (_ball);
-
-		InitGameObjects ();
 	}
 
 	public void LoseLife()
@@ -110,6 +126,13 @@ public class GameManager : MonoBehaviour
 		CurrentLives--;
 
 		CheckGameOver();
+	}
+
+	public void BrickDeath()
+	{
+		_currentNumberOfBricks--;
+
+		CheckWin();
 	}
 
 	public void LeftTouch()

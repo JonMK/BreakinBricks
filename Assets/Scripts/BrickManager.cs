@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour 
 {
-	public int numberOfBricks = 24;
 	public GameObject brickPrefab;
 
 	public float horizontalSpacer = .5f;
@@ -12,6 +11,9 @@ public class BrickManager : MonoBehaviour
 	public float topSpacer = 1f;
 
 	private List<GameObject> _brickPool;
+
+	public int _numberOfBricks = 24;
+	private int _deadBricks;
 
 	void OnDestroy()
 	{
@@ -25,12 +27,7 @@ public class BrickManager : MonoBehaviour
 		GameManager.OnFullReset += Reset;
 	}
 
-	void Awake()
-	{
-		InitBricks ();
-	}
-
-	private void InitBricks()
+	public int InitBricks(int numberOfRows)
 	{
 		var brickTemp =  Instantiate(brickPrefab, transform.position, Quaternion.identity) as GameObject;
 		var spriteWidth = brickTemp.GetComponent<SpriteRenderer> ().bounds.size.x;
@@ -39,12 +36,9 @@ public class BrickManager : MonoBehaviour
 
 		int bricksPerRow = (int)((worldDimensions.x - horizontalSpacer) / (spriteWidth + horizontalSpacer));
 		Destroy (brickTemp);
-
-		//Debug.Log (spriteWidth + " : " + worldDimensions + " : " + bricksPerRow);
-
+	
 		horizontalSpacer += ((worldDimensions.x - horizontalSpacer) - ((spriteWidth + horizontalSpacer) * bricksPerRow)) / bricksPerRow;
 
-		int numberOfRows = numberOfBricks / bricksPerRow;
 		int vertBrickMultiplier = 0;
 		int vertMultiplier = 1;
 		int horzBrickMultiplier = 0;
@@ -57,7 +51,9 @@ public class BrickManager : MonoBehaviour
 			{			
 			
 				brick = Instantiate (brickPrefab, 
+					// (width of all the spacers) + (width of all the bricks) + (1/2 current brick width so its centered)
 					new Vector2 ((horizontalSpacer * horzMultiplier) + (spriteWidth * horzBrickMultiplier) + (spriteWidth / 2), 
+						// start at the top of the screen - ((height of all spacers) + (height of all sprites) - leave some space at the top)
 						(worldDimensions.y - ((verticalSpacer * vertMultiplier) + (spriteHeight * vertBrickMultiplier))) - topSpacer), 
 					Quaternion.identity) as GameObject;
 
@@ -72,6 +68,9 @@ public class BrickManager : MonoBehaviour
 			horzBrickMultiplier = 0;
 			horzMultiplier = 1;
 		}
+
+		// Total number of bricks
+		return numberOfRows * bricksPerRow;
 	}
 
 	private void Reset()

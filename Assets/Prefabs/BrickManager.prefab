@@ -51,9 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87db1d84695b64789884536506993875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBricks: 24
+  rowsOfBricks: 3
   brickPrefab: {fileID: 1646740071285256, guid: a28dd8158c083430e8330e2f6deda8a3,
     type: 2}
   horizontalSpacer: 0.5
   verticalSpacer: 0.7
   topSpacer: 1
+  _numberOfBricks: 24

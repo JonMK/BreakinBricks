@@ -14,5 +14,7 @@ public class Brick : MonoBehaviour
 		//Instantiate(paritcles, transform.position, Quaternion.identity);
 
 		gameObject.SetActive (false);
+
+		GameManager.Instance.BrickDeath ();
 	}
 }

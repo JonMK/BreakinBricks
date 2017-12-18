@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
-  resetDelay: 1
+  rowsOfBricks: 3
   livesText: {fileID: 0}
   gameOver: {fileID: 0}
-  youWon: {fileID: 0}
   ballPrefab: {fileID: 1124926690200550, guid: f7ed139979644433ea6b3892eb5920eb, type: 2}
   paddlePrefab: {fileID: 1961607738662898, guid: 4c16eec04b4a44b519d3f3c9ea25d70a,
+    type: 2}
+  brickManagerPrefab: {fileID: 114862258180082734, guid: fdfa7b612a2b34c4d819589868f7790c,
     type: 2}

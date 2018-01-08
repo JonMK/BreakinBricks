@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891144501820522}
   - component: {fileID: 114338555795362420}
+  - component: {fileID: 114742775629157190}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570353188119196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.24, y: 7.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,3 +61,16 @@ MonoBehaviour:
     type: 2}
   brickManagerPrefab: {fileID: 114862258180082734, guid: fdfa7b612a2b34c4d819589868f7790c,
     type: 2}
+--- !u!114 &114742775629157190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570353188119196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4d27f7908d6467eab83b1ce5eabe86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftCollider: {fileID: 0}
+  RightCollider: {fileID: 0}

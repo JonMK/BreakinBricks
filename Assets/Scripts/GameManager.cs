@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 	public GameObject paddlePrefab;
 	public BrickManager brickManagerPrefab;
 
+	public BoxCollider2D LeftCollider;
+	public BoxCollider2D RightCollider;
+
 	public static GameManager Instance = null;
 
 	private GameObject _paddle;
@@ -48,6 +51,18 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private float _leftBorder;
+	public float LeftBorder
+	{
+		get { return Camera.main.ViewportToWorldPoint (new Vector3 (0, 0, 0)).x; }
+	}
+
+	private float _rightBorder;
+	public float RightBorder
+	{
+		get { return Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x; }
+	}
+
 	private void Awake () 
 	{
 		if (Instance == null)
@@ -59,6 +74,12 @@ public class GameManager : MonoBehaviour
 		_numberOfBricks = brickManager.InitBricks (rowsOfBricks);
 
 		Setup();
+	}
+
+	private void Start()
+	{
+		LeftCollider.transform.position = new Vector2 (LeftBorder - (LeftCollider.bounds.size.x/2), LeftCollider.transform.position.y);
+		RightCollider.transform.position = new Vector2 (RightBorder + (RightCollider.bounds.size.x/2), RightCollider.transform.position.y);
 	}
 
 	private void Setup()

@@ -35,11 +35,16 @@ public class BrickManager : MonoBehaviour
 		var spriteWidth = brickTemp.GetComponent<SpriteRenderer> ().bounds.size.x;
 		var spriteHeight = brickTemp.GetComponent<SpriteRenderer> ().bounds.size.y;
 		var worldDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10));
+		var screenWidth = GameManager.Instance.RightBorder;
+		var shift = GameManager.Instance.LeftBorder;
 
-		int bricksPerRow = (int)((worldDimensions.x - horizontalSpacer) / (spriteWidth + horizontalSpacer));
+		if (shift < 0)
+			screenWidth += (shift * -1);
+
+		int bricksPerRow = (int)((screenWidth - horizontalSpacer) / (spriteWidth + horizontalSpacer));
 		Destroy (brickTemp);
 	
-		horizontalSpacer += ((worldDimensions.x - horizontalSpacer) - ((spriteWidth + horizontalSpacer) * bricksPerRow)) / bricksPerRow;
+		horizontalSpacer += ((screenWidth - horizontalSpacer) - ((spriteWidth + horizontalSpacer) * bricksPerRow)) / bricksPerRow;
 
 		int vertBrickMultiplier = 0;
 		int vertMultiplier = 1;
@@ -54,7 +59,7 @@ public class BrickManager : MonoBehaviour
 			
 				brick = Instantiate (brickPrefab, 
 					// (width of all the spacers) + (width of all the bricks) + (1/2 current brick width so its centered)
-					new Vector2 ((horizontalSpacer * horzMultiplier) + (spriteWidth * horzBrickMultiplier) + (spriteWidth / 2), 
+					new Vector2 (((horizontalSpacer * horzMultiplier) + (spriteWidth * horzBrickMultiplier) + (spriteWidth / 2))+shift, 
 						// start at the top of the screen - ((height of all spacers) + (height of all sprites) - leave some space at the top)
 						(worldDimensions.y - ((verticalSpacer * vertMultiplier) + (spriteHeight * vertBrickMultiplier))) - topSpacer), 
 					Quaternion.identity) as GameObject;

@@ -70,16 +70,13 @@ public class GameManager : MonoBehaviour
 		else if (Instance != this)
 			Destroy (gameObject);
 
+		LeftCollider.transform.position = new Vector2 (LeftBorder - (LeftCollider.bounds.size.x/2), LeftCollider.transform.position.y);
+		RightCollider.transform.position = new Vector2 (RightBorder + (RightCollider.bounds.size.x/2), RightCollider.transform.position.y);
+
 		var brickManager = Instantiate(brickManagerPrefab, transform.position, Quaternion.identity) as BrickManager;
 		_numberOfBricks = brickManager.InitBricks (rowsOfBricks);
 
 		Setup();
-	}
-
-	private void Start()
-	{
-		LeftCollider.transform.position = new Vector2 (LeftBorder - (LeftCollider.bounds.size.x/2), LeftCollider.transform.position.y);
-		RightCollider.transform.position = new Vector2 (RightBorder + (RightCollider.bounds.size.x/2), RightCollider.transform.position.y);
 	}
 
 	private void Setup()

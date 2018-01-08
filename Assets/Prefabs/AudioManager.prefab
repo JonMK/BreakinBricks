@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 82669658810707634}
-  ballBounce: {fileID: 8300000, guid: 37128b937cd094cfdaead1d9650038b8, type: 3}
-  brickDeath: {fileID: 8300000, guid: 6edda2be990c64824930cfcc0e7e9cdb, type: 3}
+  ballBounce: {fileID: 8300000, guid: 6edda2be990c64824930cfcc0e7e9cdb, type: 3}
+  brickDeath: {fileID: 8300000, guid: 37128b937cd094cfdaead1d9650038b8, type: 3}
   win: {fileID: 8300000, guid: e315a5371928547dba40ba0cc3b4704b, type: 3}
   gameover: {fileID: 8300000, guid: d23b8db8d7c764effb20b0845b775003, type: 3}
